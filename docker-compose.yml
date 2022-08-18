@@ -1,0 +1,41 @@
+version: "3.8"
+services:  
+  middleware:  
+    build: middleware      
+    image: natasha256/blockchain-middleware:3.0
+    container_name: middleware   
+    expose:
+      - "4000"
+      - "4001"
+    networks:
+      - my_network
+  user:  
+    build: user      
+    image: natasha256/blockchain-user:3.0
+    container_name: user    
+    command: ["./wait-for-it.sh", "-t","240","middleware:4001", "--", "python", "user.py", "100"] 
+    stop_signal: SIGINT
+    environment:
+        - TZ=Europe/Berlin
+    #     - TZ=Asia/Almaty
+    ports:
+      - "5000:5000"
+    networks:
+      - my_network
+    depends_on:
+      - middleware
+  iot:  
+    build: iot      
+    image: natasha256/blockchain-iot:3.0
+    container_name: iot    
+    command: ["./wait-for-it.sh", "-t","240","middleware:4000", "--", "python", "client.py", "30"] 
+    stop_signal: SIGINT
+    environment:
+        - TZ=Europe/Berlin
+        #- TZ=Asia/Almaty
+    networks:
+      - my_network
+    depends_on:
+      - middleware
+networks:
+  my_network: 
