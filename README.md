@@ -1,4 +1,6 @@
-# Blockchain_Challenge_N
+# Blockchain_IoT
+**IMPORTANT! Set your own Infura connection (middleware/server.py and user/user.py).**
+
 A blockchain based sensor data integration and user notification system.
 
 
@@ -14,7 +16,7 @@ The system consists of four logical parts:
 
 The project is made in Python using Flask web framework and Web3.py library for interacting with Ethereum. 
 
-The Ropsten testnetwork was chosen as the Ethereum blockchain, and to connect to it - the remote node provider Infura. The [Containerized Stage 2 (local, Ganache)](https://github.com/abTuhh/Blockchain_Challenge_N/commit/f85ef91ef2fadcda5db4e6c4297916dd976189b0) commit also allows to run the system version when it interacts not with Ropsten, but with the Ganache local network (represented by a separate Docker image *trufflesuite/ganache-cli*).
+The Ropsten testnetwork was chosen as the Ethereum blockchain, and to connect to it - the remote node provider Infura. 
 
 When the system started, a [wait-for-it](https://github.com/vishnubob/wait-for-it) script was used to check the availability of a host and TCP port (that is, the other part is already ready for interaction).
 
@@ -60,7 +62,7 @@ When the system started, a [wait-for-it](https://github.com/vishnubob/wait-for-i
 
 Clone the repo and change to the directory:
 ```
-git clone https://github.com/abTuhh/Blockchain_Challenge_N.git && cd Blockchain_Challenge_N
+git clone https://github.com/nataSha256/Blockchain_IoT.git && cd Blockchain_IoT
 ```
 Then run containers: 
 ```
